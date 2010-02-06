@@ -26,35 +26,55 @@ endif
 syn case match
 
 " Match groups {{{1
+
 syn match erlangStringModifier               /\\./ contained
 syn match erlangStringModifier               /\~\%(-\?[0-9*]\+\)\?\%(\.[0-9*]\+\..\?\)\?\%(c\|f\|e\|g\|s\|w\|p\|W\|P\|B\|X\|#\|b\|+\|n\|i\)/ contained
 syn match erlangModifier                     /\$\\\?./
 
+"---OK
 syn match erlangInteger                      /\<\%([0-9]\+#[0-9a-fA-F]\+\|[0-9]\+\)\>/
 syn match erlangFloat                        /\<[0-9]\+\.[0-9]\+\%(e-\?[0-9]\+\)\?\>/
 
+"---OK
 syn keyword erlangTodo                       TODO FIXME XXX contained
 syn match erlangComment                      /%.*$/ contains=@Spell,erlangTodo
 
 syn keyword erlangKeyword                    band bor bnot bsl bsr bxor div rem xor
-syn keyword erlangKeyword                    try catch begin receive after cond fun let query
+syn keyword erlangKeyword                    begin cond fun let query
 
+"---OK
+syn keyword erlangMessage                    receive after
+
+"---OK
+syn keyword erlangException                  try catch
+
+"---OK
 syn keyword erlangConditional                case if of end
 syn keyword erlangConditional                not and or andalso orelse
 syn keyword erlangConditional                when
 
+"---OK
 syn keyword erlangBoolean                    true false
 
-syn keyword erlangGuard                      is_list is_atom is_binary is_bitstring is_boolean is_tuple is_number is_integer is_float is_function is_constant is_pid is_port is_reference is_record is_process_alive
+"---OK
+syn keyword erlangGuard                      is_list is_atom is_binary
+syn keyword erlangGuard                      is_bitstring is_boolean
+syn keyword erlangGuard                      is_tuple is_number is_integer
+syn keyword erlangGuard                      is_float is_function is_constant
+syn keyword erlangGuard                      is_pid is_port is_reference
+syn keyword erlangGuard                      is_record is_process_alive
 
+"---OK
 syn match erlangOperator                     /\/\|*\|+\|-\|++\|--/
 syn match erlangOperator                     /->\|<-\|||\||\|!\|=/
 syn match erlangOperator                     /=:=\|==\|\/=\|=\/=\|<\|>\|=<\|>=/
 syn keyword erlangOperator                   div rem
 
+"---OK?  Skip needs quotes?
 syn region erlangString                      start=/"/ end=/"/ skip=/\\/ contains=@Spell,erlangStringModifier
 
 syn match erlangVariable                     /\<[A-Z_]\w*\>/
+syn match erlangIgnoredVariable              /\<_\w*\>/
 syn match erlangAtom                         /\%(\%(^-\)\|#\)\@<!\<[a-z]\w*\>(\@!/
 syn match erlangAtom                         /\\\@<!'[^']*\\\@<!'/
 
