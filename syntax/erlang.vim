@@ -27,7 +27,8 @@ syn match erlangInteger         /\<\%([0-9]\+#[0-9a-fA-F]\+\|[0-9]\+\)\>/
 syn match erlangFloat           /\<[0-9]\+\.[0-9]\+\%(e-\?[0-9]\+\)\?\>/
 
 syn keyword erlangTodo          TODO FIXME XXX contained
-syn match erlangComment         /%.*$/ contains=@Spell,erlangTodo
+syn match erlangEDoc            /\(%%\s*\)\@<=@\w\+/ contained
+syn match erlangComment         /%.*$/ contains=@Spell,erlangTodo,erlangEDoc
 
 syn keyword erlangKeyword       band bor bnot bsl bsr bxor div rem xor
 syn keyword erlangKeyword       begin cond fun let query
@@ -36,9 +37,11 @@ syn keyword erlangMessage       receive after
 
 syn keyword erlangException     try catch throw
 
-syn keyword erlangConditional   case if of end
+syn keyword erlangConditional   case if of
 syn keyword erlangConditional   not and or andalso orelse
 syn keyword erlangConditional   when
+
+syn keyword erlangEnd           end
 
 syn keyword erlangBoolean       true false
 
@@ -105,6 +108,7 @@ hi link erlangStringModifier SpecialChar
 hi link erlangComment        Comment
 hi link erlangVariable       Identifier
 hi link erlangIgnoredVariable Comment
+hi link erlangEDoc           SpecialComment
 hi link erlangInclude        Include
 hi link erlangRecordDef      Typedef
 hi link erlangAttribute      Keyword
@@ -115,6 +119,7 @@ hi link erlangConstant       Constant
 hi link erlangPreCondit      PreCondit
 hi link erlangPreProc        PreProc
 hi link erlangDelimiter      Delimiter
+hi link erlangEnd            Delimiter
 hi link erlangBitDelimiter   Normal
 hi link erlangOperator       Operator
 hi link erlangConditional    Conditional
