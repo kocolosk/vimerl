@@ -92,8 +92,10 @@ syn match erlangPreCondit       /^-\%(ifdef\|ifndef\|endif\) *(\@=/
 
 syn match erlangType            /^-\%(spec\|type\)[( ]\@=/
 
-syn match erlangMacro           /\%(-define(\)\@<=\w\+/
-syn match erlangMacro           /?\w\+/
+syn match erlangConstant        /\%(-define(\)\@<=\w\+/
+syn match erlangConstant        /?\w\+/
+syn match erlangMacro           /\%(-define(\)\@<=\w\+\s*(\@=/
+syn match erlangMacro           /?\w\+\s*(\@=/
 
 syn match erlangBitType         /\%(\/\|-\)\@<=\%(bits\|bitstring\|binary\|integer\|float\|unit\)\>/
 syn match erlangBitSize         /:\@<=[0-9]\+/
@@ -111,7 +113,7 @@ hi link erlangTitle          Title
 hi link erlangTodo           Todo
 hi link erlangString         String
 hi link erlangNoSpellString  String 
-hi link erlangModifier       SpecialChar
+hi link erlangModifier       Character
 hi link erlangStringModifier SpecialChar
 hi link erlangComment        Comment
 hi link erlangVariable       Identifier
@@ -122,6 +124,7 @@ hi link erlangAttribute      Keyword
 hi link erlangKeyword        Keyword
 hi link erlangMacro          Macro
 hi link erlangDefine         Define
+hi link erlangConstant       Constant
 hi link erlangPreCondit      PreCondit
 hi link erlangPreProc        PreProc
 hi link erlangDelimiter      Delimiter
@@ -133,10 +136,7 @@ hi link erlangBoolean        Boolean
 hi link erlangAtom           Normal
 hi link erlangRecord         Structure
 hi link erlangInteger        Number
-hi link erlangFloat          Number
-hi link erlangFloat          Number
-hi link erlangFloat          Number
-hi link erlangFloat          Number
+hi link erlangFloat          Float
 hi link erlangHex            Number
 hi link erlangBIF            Keyword
 hi link erlangFun            Keyword
