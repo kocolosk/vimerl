@@ -4,14 +4,6 @@
 " URL:        http://oscar.hellstrom.st
 " Version:    2007-10-12
 " ------------------------------------------------------------------------------
-" {{{1
-" Options:
-"
-" Erlang BIFs
-" g:erlangHighlightBif - highlight erlang built in functions (default: off)
-"
-" }}}
-" -----------------------------------------------------------------------------
 
 " Setup {{{1
 " For version 5.x: Clear all syntax items
@@ -31,32 +23,25 @@ syn match erlangStringModifier  /\\./ contained
 syn match erlangStringModifier  /\~\%(-\?[0-9*]\+\)\?\%(\.[0-9*]\+\..\?\)\?\%(c\|f\|e\|g\|s\|w\|p\|W\|P\|B\|X\|#\|b\|+\|n\|i\)/ contained
 syn match erlangModifier        /\$\\\?./
 
-"---OK
 syn match erlangInteger         /\<\%([0-9]\+#[0-9a-fA-F]\+\|[0-9]\+\)\>/
 syn match erlangFloat           /\<[0-9]\+\.[0-9]\+\%(e-\?[0-9]\+\)\?\>/
 
-"---OK
 syn keyword erlangTodo          TODO FIXME XXX contained
 syn match erlangComment         /%.*$/ contains=@Spell,erlangTodo
 
 syn keyword erlangKeyword       band bor bnot bsl bsr bxor div rem xor
 syn keyword erlangKeyword       begin cond fun let query
 
-"---OK
 syn keyword erlangMessage       receive after
 
-"---OK
 syn keyword erlangException     try catch throw
 
-"---OK
 syn keyword erlangConditional   case if of end
 syn keyword erlangConditional   not and or andalso orelse
 syn keyword erlangConditional   when
 
-"---OK
 syn keyword erlangBoolean       true false
 
-"---OK
 syn keyword erlangGuard         is_list is_atom is_binary
 syn keyword erlangGuard         is_bitstring is_boolean
 syn keyword erlangGuard         is_tuple is_number is_integer
@@ -64,7 +49,6 @@ syn keyword erlangGuard         is_float is_function is_constant
 syn keyword erlangGuard         is_pid is_port is_reference
 syn keyword erlangGuard         is_record is_process_alive
 
-"---OK
 syn match erlangOperator        /\/\|*\|+\|-\|++\|--/
 syn match erlangOperator        /->\|<-\|||\||\|!\|=/
 syn match erlangOperator        /=:=\|==\|\/=\|=\/=\|<\|>\|=<\|>=/
@@ -77,6 +61,9 @@ syn match erlangVariable        /\<[A-Z_]\w*\>/
 syn match erlangIgnoredVariable /\<_\w*\>/
 syn match erlangAtom            /\%(\%(^-\)\|#\)\@<!\<[a-z]\w*\>(\@!/
 syn match erlangAtom            /\\\@<!'[^']*\\\@<!'/
+
+syn match erlangFunction        /\<[a-z][A-Za-z_:]*\s*(\@=/
+syn match erlangTopFunction     /^[a-z]\w*\s*(\@=/
 
 syn match erlangRecord          /#\w\+/
 
@@ -140,6 +127,8 @@ hi link erlangFloat          Float
 hi link erlangHex            Number
 hi link erlangBIF            Keyword
 hi link erlangFun            Keyword
+hi link erlangFunction       Function
+hi link erlangTopFunction    Label
 hi link erlangList           Delimiter
 hi link erlangTuple          Delimiter
 hi link erlangBinary         Keyword
@@ -148,12 +137,6 @@ hi link erlangBitType        Type
 hi link erlangType           Type
 hi link erlangBitSize        Number
 hi link erlangException      Exception
-" }}}
-
-" Optional linkings {{{1
-if exists("g:erlangHighlightBif") && g:erlangHighlightBif
-	hi link erlangGBIF           Keyword
-endif
 " }}}
 
 let b:current_syntax = "erlang"
