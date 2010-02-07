@@ -65,7 +65,8 @@ syn match erlangIgnoredVariable /\<_\w*\>/
 syn match erlangAtom            /\%(\%(^-\)\|#\)\@<!\<[a-z]\w*\>(\@!/
 syn match erlangAtom            /\\\@<!'[^']*\\\@<!'/
 
-syn match erlangFunction        /\<[a-z][A-Za-z_:]*\s*(\@=/
+syn match erlangModule          /\<[a-z]\w*:\@=/ contained
+syn match erlangFunction        /\<[a-z][A-Za-z_:]*\s*(\@=/ contains=erlangModule
 syn match erlangTopFunction     /^[a-z]\w*\s*(\@=/
 
 syn match erlangRecord          /#\w\+/
@@ -134,6 +135,7 @@ hi link erlangBIF            Keyword
 hi link erlangFun            Keyword
 hi link erlangFunction       Function
 hi link erlangTopFunction    Label
+hi link erlangModule         Include
 hi link erlangList           Delimiter
 hi link erlangTuple          Delimiter
 hi link erlangBinary         Keyword
