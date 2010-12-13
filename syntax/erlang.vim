@@ -66,7 +66,7 @@ syn match erlangAtom            /\%(\%(^-\)\|#\)\@<!\<[a-z]\w*\>(\@!/
 syn match erlangAtom            /\\\@<!'[^']*\\\@<!'/
 
 syn match erlangModule          /\<[a-z]\w*:\@=/ contained
-syn match erlangFunction        /\<[a-z][A-Za-z_:]*\s*(\@=/ contains=erlangModule
+syn match erlangFunction        /\<[a-z][A-Za-z0-9_:]*\s*(\@=/ contains=erlangModule
 syn match erlangTopFunction     /^[a-z]\w*\s*(\@=/
 
 syn match erlangRecord          /#\w\+/
